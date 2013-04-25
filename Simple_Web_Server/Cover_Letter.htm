@@ -1,0 +1,190 @@
+﻿
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--
+The background and most javascript is from "Rainy Mood" Inc.  -- Ranger weng
+-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"> 
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- This is for the iOS 6.x+ smart banner -->
+<meta name="apple-itunes-app" content="app-id=566752651, affiliate-data=myAffiliateData, app-argument=myURL" />
+
+<title>Cover Letter</title>
+<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=0.65, maximum-scale=0.65, minimum-scale=0.65"/>
+
+
+<style type="text/css">body {margin:0;padding:0px;font-family:Verdana,Elephant;color: #54FF3D;font-size:16pt;background-color:#000000; text-shadow: -1px 2px 3px #000;}
+a,a:link,a:visited {text-decoration:underline;}
+a:hover {text-decoration:underline;}
+
+#jquery_jplayer_1 {
+  width:0px;
+  height:0px;
+}
+
+#video {position:fixed;top:0px;width:100%;overflow:hidden;z-index:0;}
+#content {z-index:2;position:relative;margin:0 auto 0;width:100%;max-height:70%;height:100%;padding:0;}
+#textframe {padding:50px 0 0 0;}
+
+.img {opacity:0.7;}
+.img img{box-shadow: 1px 1px 1px 1px #000;-moz-box-shadow: 1px  1px 1px 1px #000;-webkit-box-shadow: 1px  1px 1px 1px #000;}
+
+#sf_admin_content {color:#333;}
+
+#footer {position:fixed;left:0;right:0;bottom:0;height:44px;z-index:2;background-color:#000;}
+
+#scanlines {position:fixed;top:0;left:0;right:0;bottom:0;z-index:1;}
+
+#myContent {position:absolute;top:0;left:0;right:0;bottom:0;z-index:2;}</style>
+
+
+<script type="text/javascript">
+
+
+var Videoplayer = Class.create({
+
+	initialize: function(number, options){
+		this.suppliedOptions = options;
+		this.defaultOptions = $H({
+		  autoPlay: true,
+		  wrapper: 'video'
+		});
+
+		this.srcOne = 'http://173.193.205.68/video/RainyMood.mp4';  // Don't forget to set the origHeight and origWidth below.
+		this.srcTwo = 'http://173.193.205.68/video/RainyMood.webm';
+		this.video();
+		this.startObserving();
+
+			},
+
+	video: function () {
+		var dimensions = this.getVideoDimensions();
+		this.video = new Element('video',{width:dimensions[0],height:dimensions[1]});
+		this.video.preload = true;this.video.autoplay = true; this.video.loop = true;this.video.autobuffer = true;
+		var srcOne = new Element('source',{src:this.srcOne,type:'video/mp4; codecs=\"avc1.42E01E, mp4a.40.2\"'});
+		var srcTwo = new Element('source',{src:this.srcTwo,type:'video/webm; codecs=\"vp8.0, vorbis\"'});
+		this.video.insert(srcOne);this.video.insert(srcTwo); $('video').insert(this.video);
+	},
+	startObserving: function () {
+		Event.observe(window, 'resize', function(e){
+			dimensions = this.getVideoDimensions();
+			this.video.width = dimensions[0];
+			this.video.height = dimensions[1];
+		}.bind(this));
+		
+		this.loopVideo();
+		
+		// This line was disabled because it causes a bug when the pause button isn't there.
+		// It should be re-commented-out if I remove the pause button.
+		$$('.playControl').first().observe('click',this.playControl.bindAsEventListener(this));
+	},
+	getVideoDimensions: function () {
+		var windowWidth = document.viewport.getWidth(); var windowHeight = $('content').getHeight(); windowProportion = windowWidth / windowHeight;
+		var origWidth = 960; origHeight = 720; var origProportion = origWidth / origHeight;
+		var newWidth = 0; var newHeight = 0;
+		if (windowProportion >= origProportion) {
+			proportion = windowWidth / origWidth;
+		} else {
+			proportion = windowHeight / origHeight;
+		}
+		newWidth = proportion * origWidth; newHeight = proportion * origHeight;
+		//console.log('Window Height:%s, newWidth: %s, newHeight: %s',windowHeight,newWidth,newHeight);
+		return [newWidth,newHeight]
+	},
+	playControl: function () {
+		if (this.video.paused == false) {
+			this.video.pause();
+			$$('.playControl').first().innerHTML = "<img src='http://173.193.205.68/i/videoWhitePlay.png' width='20' height='17' border='0' style='opacity:0.7;filter:alpha(opacity=70);margin-left:10px;' />";
+		} else {
+			this.video.play();
+			$$('.playControl').first().innerHTML = "<img src='http://173.193.205.68/i/videoWhitePause.png' width='20' height='17' border='0' style='opacity:0.7;filter:alpha(opacity=70);margin-left:10px;' />";
+		}
+	},
+	loopVideo: function () {
+		this.t = window.setInterval(function() {
+			if (this.video.ended == true) {
+				this.video.play();
+			}
+		}.bind(this),500);
+	}
+
+});
+</script>
+
+</head>
+
+<body onload="if (document.getElementById('permalinkVideoDiv') != null) { document.getElementById('permalinkVideoDiv').style.display='block'; }" >
+
+<!-- This is for the jquery smart banner -->
+
+
+<center>
+
+<div id="video"><video width="1822" height="1366" preload="true" autoplay="" loop=""><source src="http://173.193.205.68/video/RainyMood.mp4" type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;"><source src="http://173.193.205.68/video/RainyMood.webm" type="video/webm; codecs=&quot;vp8.0, vorbis&quot;"></video></div>
+	<div id="content"> 
+	<div id="textframe"></div>
+	<script type="text/javascript">
+	Event.observe(window, 'load', function(e){
+	var video = new Videoplayer(4);
+	});
+	</script>
+</div>
+
+<div id="myContent">
+	
+
+
+<DIV style="margin-left: 15%; margin-top: 30pt; text-align: left;" ><B style="mso-bidi-font-weight: normal"><SPAN style=" FONT-SIZE: 16pt; mso-bidi-font-size: 12.0pt; color: orange">Dear Sir or Madam,</SPAN></B><B style="mso-bidi-font-weight: normal"><SPAN style="FONT-SIZE: 16pt; mso-bidi-font-size: 12.5pt; "><?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /></SPAN></B></P>
+<br />
+<SPAN>I'm currently a computer science graduate student in Stevens Institute of Technology.</SPAN><br />
+<SPAN>I'll be glad if you could consider me of internship position this summer.</SPAN><br />
+<br />
+<SPAN>I'm interested in internet technologies, cloud computing, and mobile applications.</SPAN><br />
+<SPAN>I have worked for 2 two years for software testing and developing respectively.</SPAN><br />
+<br />
+<SPAN>My projects included software testing cover whole life cycle, and auto-testing with VB scripts;</SPAN><br />
+<SPAN>and developing websites with C# MVC, Java, Database like MS Sql Server, Oraclel; as well as Platform with DotNetDuke CMS;</SPAN><br />
+<SPAN>I have developed Android app as Client with MS SharePoint Web service as Server, to implement a Co-office System.</SPAN><br />
+<SPAN>Besides, I'm familiar with C/C++ programming and UNIX/Linux Solaris BSD System Administrations.</SPAN><br />
+<br />
+
+<SPAN>I have taken courses Distributed Systems and <SPAN>Cybersecurity</SPAN> last semester,&nbsp;</SPAN><br />
+<SPAN>I'm taking System Administration, TCP/IP socket programming and DBMA on Web this semester.</SPAN><br />
+<SPAN></SPAN></P>
+<SPAN>You could get more information from my <SPAN style="COLOR: #2672ec; FONT-SIZE: 16pt; mso-bidi-font-size: 12.0pt; "><A href="http://goo.gl/yZ0pS" target="blank">Resume.pdf</A></SPAN> </SPAN>
+<br />
+<br />
+<SPAN>And here is my paper in CyberSecurity area, a Mobile APP design about Login Systems:
+<A href="http://goo.gl/VT9Im" target="blank">Password-less Login Everywhere</A></SPAN>
+<br />
+<br />
+<SPAN>Recently, I got the 3rd prize in Microsoft Imagine <SPAN>Cup at Stevens</SPAN> in the last weekends of January 2013,&nbsp;</SPAN>
+<br />
+<SPAN class=GramE><SPAN>which</SPAN></SPAN><SPAN> was an overnight coding competition of developing Win8 features application with Visual Studio 2012.</SPAN><br />
+<br />
+<SPAN>Thanks for your time. Hope to contact with you in the future.</SPAN><br />
+<br />
+<br />
+<B style="mso-bidi-font-weight: normal"><SPAN style="color: #410">Sincerely,</SPAN></B><B style="mso-bidi-font-weight: normal"><SPAN style="FONT-SIZE: 16pt; mso-bidi-font-size: 12.5pt; "></SPAN></B></P>
+<SPAN><SPAN style="FONT-SIZE: 20pt; font-family: Mistral; color: #000"><b>Renjie (Roger) <SPAN>Weng</SPAN></b></SPAN></P>
+</DIV>
+
+<DIV>
+<div style="color: #410; font-size: 12px;text-align:center; text-shadow: 0px 0px 0px">
+		<a>Renjie (Roger) Weng</a> <br />
+		<a>(201)519-0732</a> <br />
+		<a>rweng@stevens.edu</a><br />
+		<a>Computer Science Department</a><br />
+		<a>Stevens Institute of Technolgy</a><br />
+	
+</div>
+</DIV>
+ 
+</div>
+
+</center>
+
+</body> 
+</html>
